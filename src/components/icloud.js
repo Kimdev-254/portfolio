@@ -1,4 +1,6 @@
-// import IconCloud from "@/components/ui/icon-cloud";
+// src/components/icloud.js
+
+import IconCloud from "@/components/ui/icon-cloud"
 
 const slugs = [
   "typescript",
@@ -35,13 +37,8 @@ const slugs = [
 
 export function IconCloudDemo() {
   return (
-    <div className="relative flex h-full w-full max-w-[32rem] items-center justify-center overflow-hidden rounded-lg border bg-background px-20 pb-20 pt-8 ">
-      <p className="text-white">Icon Cloud Demo</p>
-      <ul>
-        {slugs.map((slug) => (
-          <li key={slug}>{slug}</li>
-        ))}
-      </ul>
+    <div className="icon-cloud-demo relative flex h-full w-full max-w-[32rem] items-center justify-center overflow-hidden rounded-lg border px-20 pb-20 pt-8">
+      <IconCloud iconSlugs={slugs} />
     </div>
   )
 }
