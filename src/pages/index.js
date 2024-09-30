@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic"
 import Head from "next/head"
 import {
   AiFillTwitterCircle,
@@ -5,7 +6,12 @@ import {
   AiFillGithub,
 } from "react-icons/ai"
 import Image from "next/image"
-import { IconCloudDemo } from "@/components/icloud"
+
+const IconCloud = dynamic(() => import("@/components/icon-cloud"), {
+  ssr: false,
+})
+
+const iconSlugs = ["react", "javascript", "typescript", "nextjs", "nodejs"]
 
 export default function Home() {
   return (
@@ -87,100 +93,62 @@ export default function Home() {
           </section>
 
           <section className="mt-0">
-            <div className="bg-background font-serif text-white-900 p-8">
+            <div className="bg-background font-serif text-white p-8">
               <h2 className="text-3xl font-bold text-teal-600 text-center mb-8">
                 My Skills
               </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 ">
-                <div
-                  className="bg-card text-card-foreground p-4 rounded-lg flex flex-col items-center
-              transform hover:scale-110 transition-transform duration-300 overflow-hidden"
-                >
-                  <i className="devicon-javascript-plain colored text-6xl mb-2"></i>
-                  <span>JavaScript</span>
-                </div>
-                <div
-                  className="bg-card text-card-foreground p-4 rounded-lg flex flex-col items-center
-                transform hover:scale-110 transition-transform duration-300 overflow-hidden"
-                >
-                  <i className="devicon-python-plain colored text-6xl mb-2"></i>
-                  <span>Python</span>
-                </div>
-                <div
-                  className="bg-card text-card-foreground p-4 rounded-lg flex flex-col items-center
-                transform hover:scale-110 transition-transform duration-300 overflow-hidden"
-                >
-                  <i className="devicon-nextjs-plain-wordmark text-6xl mb-2"></i>
-                  <span>Next.js</span>
-                </div>
-                <div
-                  className="bg-card text-card-foreground p-4 rounded-lg flex flex-col items-center
-                transform hover:scale-110 transition-transform duration-300 overflow-hidden"
-                >
-                  <i className="devicon-react-plain colored text-6xl mb-2"></i>
-                  <span>React</span>
-                </div>
-                <div
-                  className="bg-card text-card-foreground p-4 rounded-lg flex flex-col items-center
-                transform hover:scale-110 transition-transform duration-300 overflow-hidden"
-                >
-                  <i className="devicon-flutter-plain colored text-6xl mb-2"></i>
-                  <span>Flutter</span>
-                </div>
-                <div
-                  className="bg-accent text-accent-foreground p-4 rounded-lg flex flex-col items-center
-                transform hover:scale-110 transition-transform duration-300 overflow-hidden"
-                >
-                  <i className="devicon-ubuntu-plain colored text-6xl mb-2"></i>
-                  <span>Ubuntu</span>
-                </div>
-                <div
-                  className="bg-card text-card-foreground p-4 rounded-lg flex flex-col items-center
-                transform hover:scale-110 transition-transform duration-300 overflow-hidden"
-                >
-                  <i className="devicon-git-plain colored text-6xl mb-2"></i>
-                  <span>Git Source Control</span>
-                </div>
-                <div
-                  className="bg-card text-card-foreground p-4 rounded-lg flex flex-col items-center
-                transform hover:scale-110 transition-transform duration-300 overflow-hidden"
-                >
-                  <i className="devicon-postman-plain colored text-6xl mb-2"></i>
-                  <span>Postman</span>
-                </div>
-                <div
-                  className="bg-card text-card-foreground p-4 rounded-lg flex flex-col items-center
-                transform hover:scale-110 transition-transform duration-300 overflow-hidden"
-                >
-                  <i className="devicon-mongodb-plain colored text-6xl mb-2"></i>
-                  <span>MongoDB</span>
-                </div>
-                <div
-                  className="bg-card text-card-foreground p-4 rounded-lg flex flex-col items-center
-                transform hover:scale-110 transition-transform duration-300 overflow-hidden"
-                >
-                  <i className="devicon-html5-plain colored text-6xl mb-2"></i>
-                  <span>HTML & CSS</span>
-                </div>
-                <div
-                  className="bg-card text-card-foreground p-4 rounded-lg flex flex-col items-center
-                transform hover:scale-110 transition-transform duration-300 overflow-hidden"
-                >
-                  <i className="devicon-postgresql-plain colored text-6xl mb-2"></i>
-                  <span>Postgresql</span>
-                </div>
-                <div
-                  className="bg-card text-card-foreground p-4 rounded-lg flex flex-col items-center
-                transform hover:scale-110 transition-transform duration-300 overflow-hidden"
-                >
-                  <i className="devicon-prisma-plain  text-6xl mb-2"></i>
-                  <span>Prisma</span>
-                </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                {[
+                  {
+                    icon: "devicon-javascript-plain colored",
+                    skill: "JavaScript",
+                  },
+                  { icon: "devicon-python-plain colored", skill: "Python" },
+                  { icon: "devicon-nextjs-plain-wordmark", skill: "Next.js" },
+                  { icon: "devicon-react-plain colored", skill: "React" },
+                  { icon: "devicon-flutter-plain colored", skill: "Flutter" },
+                  {
+                    icon: "devicon-ubuntu-plain colored",
+                    skill: "Ubuntu",
+                    bg: "bg-accent",
+                    text: "text-accent-foreground",
+                  },
+                  {
+                    icon: "devicon-git-plain colored",
+                    skill: "Git Source Control",
+                  },
+                  { icon: "devicon-postman-plain colored", skill: "Postman" },
+                  { icon: "devicon-mongodb-plain colored", skill: "MongoDB" },
+                  { icon: "devicon-html5-plain colored", skill: "HTML & CSS" },
+                  {
+                    icon: "devicon-postgresql-plain colored",
+                    skill: "PostgreSQL",
+                  },
+                  { icon: "devicon-prisma-plain", skill: "Prisma" },
+                ].map(
+                  (
+                    {
+                      icon,
+                      skill,
+                      bg = "bg-card",
+                      text = "text-card-foreground",
+                    },
+                    index
+                  ) => (
+                    <div
+                      key={index}
+                      className={`${bg} ${text} p-4 rounded-lg flex flex-col items-center transform hover:scale-110 transition-transform duration-300 overflow-hidden`}
+                    >
+                      <i className={`${icon} text-6xl mb-2`}></i>
+                      <span>{skill}</span>
+                    </div>
+                  )
+                )}
               </div>
             </div>
           </section>
           <section className="my-8">
-            <IconCloudDemo />
+            <IconCloud iconSlugs={iconSlugs} />
           </section>
 
           <section className="px-8 py-10">
