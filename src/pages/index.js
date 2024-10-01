@@ -14,6 +14,12 @@ const IconCloud = dynamic(() => import("@/components/icon-cloud"), {
 const iconSlugs = ["react", "javascript", "typescript", "nextjs", "nodejs"]
 
 export default function Home() {
+  const projectData = [
+    { title: "Project 1" },
+    { title: "Project 2" },
+    { title: "Project 3" },
+    { title: "Project 4" },
+  ]
   return (
     <div>
       <Head>
@@ -150,54 +156,25 @@ export default function Home() {
           <section className="my-8">
             <IconCloud iconSlugs={iconSlugs} />
           </section>
-
           <section className="px-8 py-10">
             <div className="container mx-auto grid lg:grid-cols-2 gap-x-10 gap-y-12 place-items-center">
-              <div className="col-span-2 mx-auto">
-                <h2 className="block font-bold text-4xl text-teal-600 text-center mb-9 lg:text-4xl">
+              <div className="col-span-2 mx-auto text-center">
+                <h1 className="font-bold text-4xl text-teal-600 mb-9 lg:text-4xl">
                   Projects
-                </h2>
+                </h1>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:gap-8">
-                  <div
-                    className="relative flex flex-col bg-transparent rounded-xl shadow-none border-2 border-blue-600
-                  transform hover:scale-110 transition-transform duration-300 overflow-hidden"
-                  >
-                    <div className="p-8">
-                      <h4 className="block font-semibold text-3xl mb-4">
-                        Project 1
-                      </h4>
-                    </div>
-                  </div>
-                  <div
-                    className="relative flex flex-col bg-transparent rounded-xl shadow-none border-2 border-blue-600
-                  transform hover:scale-110 transition-transform duration-300 overflow-hidden"
-                  >
-                    <div className="p-8">
-                      <h4 className="block font-semibold text-3xl mb-4">
-                        Project 2
-                      </h4>
-                    </div>
-                  </div>
-                  <div
-                    className="relative flex flex-col bg-transparent rounded-xl shadow-none border-2 border-blue-600
-                  transform hover:scale-110 transition-transform duration-300 overflow-hidden"
-                  >
-                    <div className="p-8">
-                      <h4 className="block font-semibold text-3xl mb-4">
-                        Project 3
-                      </h4>
-                    </div>
-                  </div>
-                  <div
-                    className="relative flex flex-col bg-transparent rounded-xl shadow-none border-2 border-blue-600
-                  transform hover:scale-110 transition-transform duration-300 overflow-hidden"
-                  >
-                    <div className="p-8">
-                      <h4 className="block font-semibold text-3xl mb-4">
-                        Project 4
-                      </h4>
-                    </div>
-                  </div>
+                  {projectData.map((project, index) => (
+                    <article
+                      key={index}
+                      className="relative flex flex-col bg-transparent rounded-xl border-2 border-blue-600 transform hover:scale-110 transition duration-300 overflow-hidden"
+                    >
+                      <div className="p-8">
+                        <h2 className="font-semibold text-3xl mb-4">
+                          {project.title}
+                        </h2>
+                      </div>
+                    </article>
+                  ))}
                 </div>
               </div>
             </div>
@@ -205,7 +182,7 @@ export default function Home() {
 
           <section>
             <div className="flex justify-center mb-2 font-mono text-teal-600">
-              <p className="">Hire me</p>
+              <p>Hire me</p>
             </div>
             <div className="flex justify-center mb-10">
               <a
@@ -218,8 +195,6 @@ export default function Home() {
               </a>
             </div>
           </section>
-
-          <footer>{/* Add your footer content here */}</footer>
         </div>
       </main>
     </div>

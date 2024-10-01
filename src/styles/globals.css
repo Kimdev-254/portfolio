@@ -53,9 +53,9 @@
 /* Style for the IconCloudDemo component */
 .icon-cloud {
   background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  padding: 16px;
-  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  color: red;
   text-align: center;
 }
 
@@ -65,7 +65,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
+  gap: 9px;
   margin-top: 16px;
 }
 
