@@ -20,6 +20,7 @@ export default function Home() {
     { title: "Project 3" },
     { title: "Project 4" },
   ]
+
   return (
     <div>
       <Head>
@@ -36,7 +37,13 @@ export default function Home() {
         <div className="max-w-screen-lg mx-auto">
           <section className="mb-20">
             <nav className="py-5 mb-10 flex justify-start">
-              <img src="klogo.png" alt="Logo" className="h-10" />
+              <Image
+                src="/klogo.png"
+                alt="Logo"
+                width={40}
+                height={40}
+                className="h-10"
+              />
             </nav>
             <div className="flex justify-between items-center mb-8">
               <div className="text-left">
@@ -50,41 +57,39 @@ export default function Home() {
                 <h3 className="text-2xl text-teal-400 font-serif mt-0">
                   exceptional digital experiences.
                 </h3>
-                <div className="text-5xl flex justify-normal gap-14 mt-10 py-2 text-white">
-                  <a
-                    href="https://www.linkedin.com/in/boniface-kimani-49ba6030a/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="transform transition-transform duration-300 hover:scale-110"
-                  >
-                    <AiFillLinkedin />
-                  </a>
-                  <a
-                    href="https://github.com/Kimdev-254/Kimdev-254"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="transform transition-transform duration-300 hover:scale-110"
-                  >
-                    <AiFillGithub />
-                  </a>
-                  <a
-                    href="https://x.com/Kimdev254"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="transform transition-transform duration-300 hover:scale-110"
-                  >
-                    <AiFillTwitterCircle />
-                  </a>
+                <div className="text-5xl flex justify-start gap-8 mt-10 py-2 text-white">
+                  {[
+                    {
+                      href: "https://www.linkedin.com/in/boniface-kimani-49ba6030a/",
+                      icon: AiFillLinkedin,
+                    },
+                    {
+                      href: "https://github.com/Kimdev-254/Kimdev-254",
+                      icon: AiFillGithub,
+                    },
+                    {
+                      href: "https://x.com/Kimdev254",
+                      icon: AiFillTwitterCircle,
+                    },
+                  ].map(({ href, icon: Icon }, index) => (
+                    <a
+                      key={index}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transform transition-transform duration-300 hover:scale-110"
+                    >
+                      <Icon />
+                    </a>
+                  ))}
                 </div>
-                <div>
-                  <a
-                    href="/Resume .pdf"
-                    download
-                    className="inline-block rounded-md px-4 py-2 font-mono font-semibold text-white bg-green-600 mt-8 ml-20 transform transition-transform duration-300 hover:scale-110"
-                  >
-                    Resume
-                  </a>
-                </div>
+                <a
+                  href="/Resume .pdf"
+                  download
+                  className="inline-block rounded-md px-4 py-2 font-mono font-semibold text-white bg-green-600 mt-8 ml-20 transform transition-transform duration-300 hover:scale-110"
+                >
+                  Resume
+                </a>
               </div>
               <div className="relative mx-auto bg-gradient-to-b from-teal-500 rounded-full transform hover:scale-110 transition-transform duration-300 w-80 h-80 overflow-hidden md:h-96 md:w-96 mr-10">
                 <Image
@@ -98,7 +103,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="mt-0">
+          <section>
             <div className="bg-background font-serif text-white p-8">
               <h2 className="text-3xl font-bold text-teal-600 text-center mb-8">
                 My Skills
@@ -113,12 +118,7 @@ export default function Home() {
                   { icon: "devicon-nextjs-plain-wordmark", skill: "Next.js" },
                   { icon: "devicon-react-plain colored", skill: "React" },
                   { icon: "devicon-flutter-plain colored", skill: "Flutter" },
-                  {
-                    icon: "devicon-ubuntu-plain colored",
-                    skill: "Ubuntu",
-                    bg: "bg-accent",
-                    text: "text-accent-foreground",
-                  },
+                  { icon: "devicon-ubuntu-plain colored", skill: "Ubuntu" },
                   {
                     icon: "devicon-git-plain colored",
                     skill: "Git Source Control",
@@ -131,31 +131,23 @@ export default function Home() {
                     skill: "PostgreSQL",
                   },
                   { icon: "devicon-prisma-plain", skill: "Prisma" },
-                ].map(
-                  (
-                    {
-                      icon,
-                      skill,
-                      bg = "bg-card",
-                      text = "text-card-foreground",
-                    },
-                    index
-                  ) => (
-                    <div
-                      key={index}
-                      className={`${bg} ${text} p-4 rounded-lg flex flex-col items-center transform hover:scale-110 transition-transform duration-300 overflow-hidden`}
-                    >
-                      <i className={`${icon} text-6xl mb-2`}></i>
-                      <span>{skill}</span>
-                    </div>
-                  )
-                )}
+                ].map(({ icon, skill }, index) => (
+                  <div
+                    key={index}
+                    className="bg-card text-card-foreground p-4 rounded-lg flex flex-col items-center transform hover:scale-110 transition-transform duration-300"
+                  >
+                    <i className={`${icon} text-6xl mb-2`}></i>
+                    <span>{skill}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
+
           <section className="my-8">
             <IconCloud iconSlugs={iconSlugs} />
           </section>
+
           <section className="px-8 py-10">
             <div className="container mx-auto grid lg:grid-cols-2 gap-x-10 gap-y-12 place-items-center">
               <div className="col-span-2 mx-auto text-center">
