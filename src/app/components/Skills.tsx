@@ -1,22 +1,34 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Code, Database, Server, Layout, GitBranch, Terminal, Layers, Cpu, Globe, Workflow } from "lucide-react"
+import { Code, Database, Server, Layout, GitBranch, Terminal, Layers, Cpu, Globe, Workflow, LucideIcon } from "lucide-react"
 import AnimatedSectionHeader from "./AnimatedSectionHeader"
 
-const SkillIcon = ({ icon: Icon, color }: { icon: any; color: string }) => (
-  <div className={`p-2 rounded-full bg-white dark:bg-gray-800 shadow-lg`}>
+interface SkillIconProps {
+  icon: LucideIcon;
+  color: string;
+}
+
+const SkillIcon: React.FC<SkillIconProps> = ({ icon: Icon, color }) => (
+  <div className="p-2 rounded-full bg-white dark:bg-gray-800 shadow-lg">
     <Icon className={`w-6 h-6 ${color}`} />
   </div>
 )
 
-const skills = [
+interface Skill {
+  icon: LucideIcon;
+  name: string;
+  tech: string;
+  description: string;
+  color: string;
+}
+
+const skills: Skill[] = [
   {
     icon: Code,
     name: "Frontend Development",
     tech: "React.js, Next.js",
-    description:
-      "Building responsive and interactive user interfaces with modern React features and Next.js for optimal performance.",
+    description: "Building responsive and interactive user interfaces with modern React features and Next.js for optimal performance.",
     color: "text-blue-500",
   },
   {
@@ -133,4 +145,3 @@ export default function Skills() {
     </section>
   )
 }
-
