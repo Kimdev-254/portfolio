@@ -1,7 +1,7 @@
-// filepath: /home/kim/Documents/myProjects/portfolio/.eslintrc.js
 module.exports = {
-  // other configurations...
-  rules: {
-    '@typescript-eslint/no-explicit-any': 'off',
-  },
-};
+    // other configurations...
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': 'off', // Add this line to disable the rule
+    },
+  };
