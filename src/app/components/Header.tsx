@@ -45,31 +45,17 @@ export default function Header() {
 
   if (!mounted) return null
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const offset = 80 // Height of the header
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - offset
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      })
-    }
-  }
-
   return (
     <header
       className={`
         fixed w-full z-50 transition-all duration-300
         ${isVisible ? "top-0" : "-top-20"}
-        ${theme === "dark" ? "bg-gray-900/95" : "bg-white/95"}
+        bg-white/95 dark:bg-gray-900/95
         backdrop-blur-sm shadow-md
       `}
     >
       <nav className="container mx-auto px-6 py-4">
-        <ul className="flex justify-center space-x-6">
+        <ul className="flex justify-center items-center space-x-8">
           {[
             ["about", "About"],
             ["experience", "Experience"],
@@ -80,15 +66,24 @@ export default function Header() {
           ].map(([id, label]) => (
             <li key={id}>
               <button
-                onClick={() => scrollToSection(id)}
+                onClick={() => {
+                  const element = document.getElementById(id)
+                  if (element) {
+                    const offset = 80
+                    const elementPosition = element.getBoundingClientRect().top
+                    const offsetPosition = elementPosition + window.pageYOffset - offset
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: "smooth",
+                    })
+                  }
+                }}
                 className={`
-                  transition-colors duration-300
+                  px-3 py-2 rounded-md transition-colors duration-300
                   ${
                     activeSection === id
-                      ? "text-blue-600 dark:text-blue-400"
-                      : theme === "dark"
-                        ? "text-gray-300 hover:text-white"
-                        : "text-gray-800 hover:text-blue-600"
+                      ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20"
+                      : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
                   }
                 `}
               >
