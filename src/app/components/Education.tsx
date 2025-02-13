@@ -8,13 +8,20 @@ import { motion } from "framer-motion"
 export default function Education() {
   const education = [
     {
-      degree: "Bachelor's Degree in Computer Science",
-      institution: "GC University Faisalabad",
-      period: "2018 – 2022",
+      degree: "Bachelor's Degree in Information Technology",
+      institution: "Karatina University",
       achievements: [
-        "Graduated with honors",
-        "Specialized in Web Technologies and Artificial Intelligence",
-        "Completed capstone project on 'Intelligent Web Application for Healthcare'",
+        "Software Development Majors",
+        "Project-Predictive maintenance for industrial equipment with Machine Learning",
+      ],
+    },
+    {
+      degree: "Software Development",
+      institution: "Power Learn Project-PLP Academy",
+      period: "6 months",
+      achievements: [
+        "Flutter Development",
+        "Hackathon winner",
       ],
     },
   ]

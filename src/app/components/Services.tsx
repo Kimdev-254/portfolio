@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Code, Layout, Server, Smartphone } from "lucide-react"
+import { Code, Layout, Server, Smartphone, Figma, Box } from "lucide-react"
 import Image from "next/image"
 
 export default function Services() {
@@ -26,6 +26,19 @@ export default function Services() {
       icon: <Smartphone className="w-12 h-12 text-yellow-500" />,
       title: "Responsive Design",
       description: "Mobile-first, responsive web designs that work flawlessly across all devices and screen sizes.",
+    },
+    {
+      icon: <Figma className="w-12 h-12 text-yellow-500" />,
+      title: "Figma Designs",
+      description: "Responsive figma designs both web and mobile.Also converting Figma designs to code",
+    },
+    {
+      icon: <Box className="w-12 h-12 text-yellow-500" />,
+      title: "3D design and Illustrations",
+      description: [
+        "3D designs using three.js and spline.",
+        "Illustrations using Rive and Figma.",
+      ],
     },
   ]
 
