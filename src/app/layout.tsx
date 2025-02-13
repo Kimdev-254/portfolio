@@ -7,8 +7,8 @@ import { ModeToggle } from "@/components/mode-toggle"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Usman Zafar - MERN Stack Developer",
-  description: "Portfolio of Usman Zafar, a MERN Stack Developer specializing in full-stack web applications.",
+  title: "Kimdev",
+  description: "Portfolio of Boniface Kimani, full-stack web applications.",
 }
 
 export default function RootLayout({
@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} min-h-screen bg-background`}>
+      <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="fixed top-4 right-4 z-50">
             <ModeToggle />
