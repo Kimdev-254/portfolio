@@ -20,6 +20,7 @@ type FormData = z.infer<typeof formSchema>
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const {
     register,
@@ -32,14 +33,26 @@ export default function Contact() {
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true)
+    setSubmitError(null)
     try {
-      // Here you would typically send the form data to your backend
-      await new Promise((resolve) => setTimeout(resolve, 1000)) // Simulate API call
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to send message")
+      }
+
       setSubmitSuccess(true)
       reset()
-      setTimeout(() => setSubmitSuccess(false), 3000)
+      setTimeout(() => setSubmitSuccess(false), 5000)
     } catch (error) {
       console.error("Error submitting form:", error)
+      setSubmitError("Failed to send message. Please try again later.")
     } finally {
       setIsSubmitting(false)
     }
@@ -76,18 +89,18 @@ export default function Contact() {
                   className="flex items-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
                 >
                   <Mail className="w-6 h-6 mr-3 text-blue-600" />
-                  musmanzafar53@gmail.com
+                  bonifacekimani715@gmail.com
                 </a>
                 <a
                   href="tel:+923055356766"
                   className="flex items-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
                 >
                   <Phone className="w-6 h-6 mr-3 text-blue-600" />
-                  +92-305-5356766
+                  +254 719628538
                 </a>
                 <div className="flex items-center text-gray-600 dark:text-gray-300">
                   <MapPin className="w-6 h-6 mr-3 text-blue-600" />
-                  Lahore, Pakistan
+                  Nairobi, Kenya
                 </div>
               </div>
             </div>
@@ -169,6 +182,11 @@ export default function Contact() {
               {submitSuccess && (
                 <div className="mt-4 p-4 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-md">
                   Message sent successfully!
+                </div>
+              )}
+              {submitError && (
+                <div className="mt-4 p-4 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-md">
+                  {submitError}
                 </div>
               )}
             </form>
